@@ -10,3 +10,5 @@ E:\Егор\Универ\Универ\Качество ИС\Pirson\Pirson\obj\x8
 E:\Егор\Универ\Универ\Качество ИС\Pirson\Pirson\bin\Debug\Pirson.exe
 E:\Егор\Универ\Универ\Качество ИС\Pirson\Pirson\bin\Debug\Pirson.pdb
 E:\Егор\Универ\Универ\Качество ИС\Pirson\Pirson\obj\x86\Debug\Pirson.csprojResolveAssemblyReference.cache
+D:\Egor\GitRepository\Pirson\Pirson\obj\x86\Debug\Pirson.exe
+D:\Egor\GitRepository\Pirson\Pirson\obj\x86\Debug\Pirson.pdb
