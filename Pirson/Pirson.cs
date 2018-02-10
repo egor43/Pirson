@@ -27,6 +27,11 @@ namespace Pirson
         // Метод проверяет, присутствует ли во всех интервалах определнной длины минимальное количество элементов 
         private bool AllIntervalsFill(int[] sequence, double interval_length, int min_elements_in_interval)
         {
+            if(min_count_element_in_interval < 1)
+            {
+                return true;
+            }
+
             double left_border = 0; // Левая граница интервала
             double right_border = interval_length; // Правая граница интервала
             int current_element_count = 0; // Текущее количество элементов в интервале
@@ -82,6 +87,7 @@ namespace Pirson
             {
                 all_work_time += rand.Next(max_random_interval);
                 numbers.Add((int)all_work_time);
+                Console.Write(numbers[index] + " ");
             }
         }
 
