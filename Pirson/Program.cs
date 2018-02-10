@@ -54,7 +54,12 @@ namespace Pirson
                     }
                 }
             }
-            
+
+            if (current_element_count < min_elements_in_interval) // Если в последнем интервале оказалось меньше элементов
+            {
+                return false;
+            }
+
             return true;
         } 
 
@@ -84,21 +89,21 @@ namespace Pirson
             }
 
             Console.WriteLine();
-
             Console.WriteLine("Общее время: " + max_intervals_count);
 
-            int current_intervals_count = max_intervals_count; // Задаем начальное количество интервалов
+            int result_max_intervals = 0;
 
-            for (;current_intervals_count > 1; --current_intervals_count)
+            for (int current_intervals_count = max_intervals_count; current_intervals_count > 1; --current_intervals_count)
             {
                 double interval_length = GetIntervalLength(max_intervals_count, current_intervals_count); // Считаем длину одного интервала
                 if (AllIntervalsFill(numbers, interval_length, MIN_ELEMENTS_IN_INTERVAL))
                 {
+                    result_max_intervals = current_intervals_count;
                     break;
                 }
             }
 
-            Console.WriteLine("Максимальное количество интервалов: " + current_intervals_count);
+            Console.WriteLine("Максимальное количество интервалов: " + result_max_intervals);
 
             Console.ReadLine();
         }
