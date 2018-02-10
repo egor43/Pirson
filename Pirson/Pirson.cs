@@ -70,7 +70,7 @@ namespace Pirson
             return true;
         }
 
-        public Pirson(int element_count, int min_count_element_in_interval)
+        public Pirson(int element_count, int min_count_element_in_interval, int max_random_interval)
         {
             this.element_count = element_count;
             this.min_count_element_in_interval = min_count_element_in_interval;
@@ -80,21 +80,24 @@ namespace Pirson
             // Вычисляем время работы элемента относительно предыдущего и, попутно, считаем общее время (максимальное количество интервалов)
             for (int index = 0; index < element_count; ++index)
             {
-                all_work_time += rand.Next(24);
+                all_work_time += rand.Next(max_random_interval);
                 numbers.Add((int)all_work_time);
             }
         }
 
-        // Возвращает максимальное количество интервалов в в которых не меньше чем min_count_element_in_interval элементов
+        // Возвращает максимальное количество интервалов в которых не меньше чем min_count_element_in_interval элементов
         public int GetMaxCountIntervals()
         {
+            // Проверим, корректны ли внутренние параметы
             if (element_count.HasValue && min_count_element_in_interval.HasValue)
             {
+                // Если значение уже считали - отдаем его
                 if(max_intervals_count.HasValue)
                 {
                     return (int)max_intervals_count;
                 }
 
+                // Подсчет максимального количеств интервалов
                 for (int current_intervals_count = (int)all_work_time; current_intervals_count > 1; --current_intervals_count)
                 {
                     double interval_length = GetIntervalLength((int)all_work_time, current_intervals_count); // Считаем длину одного интервала
@@ -108,9 +111,52 @@ namespace Pirson
             }
             else
             {
-                return -1;
+                throw new InvalidOperationException("Access to an uninitialized variable");
             }      
         }      
 
+        // Геттер для количества элементов
+        public int ElementCount
+        {
+            get
+            {
+                if (element_count.HasValue)
+                {
+                    return (int)element_count;
+                }
+                throw new InvalidOperationException("Access to an uninitialized variable");
+            }
+        }
+
+        // Геттер для максимального количества интервалов
+        public int MaxIntervalsCount
+        {
+            get
+            {
+                return GetMaxCountIntervals();
+            }
+        }
+
+        // Геттер для минимального количества элементов, которые должны быть в каждом интервале
+        public int MinCountElementInInterval
+        {
+            get
+            {
+                if (min_count_element_in_interval.HasValue)
+                {
+                    return (int)min_count_element_in_interval;
+                }
+                throw new InvalidOperationException("Access to an uninitialized variable");
+            }
+        }
+
+        // Геттер для общего времени элеметнов
+        public int AllWorkTime
+        {
+            get
+            {
+                return all_work_time;
+            }
+        }
     }
 }
