@@ -87,7 +87,35 @@ namespace Pirson
             {
                 all_work_time += rand.Next(max_random_interval);
                 numbers.Add((int)all_work_time);
-                Console.Write(numbers[index] + " ");
+            }
+        }
+
+        // Метод для вывода в консоль последовательности
+        public void PrintSequence(bool show_all)
+        {
+            if(show_all)
+            {
+                foreach (var element in numbers)
+                {
+                    Console.Write(element + " ");
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                for (int index = 0; index < numbers.Count; ++index)
+                {
+                    if (index < 10)
+                    {
+                        Console.Write(numbers[index] + " ");
+                    }
+                    if (index == 10)
+                    {
+                        Console.Write("...");
+                        break;
+                    }
+                }
+                Console.WriteLine();
             }
         }
 
@@ -162,6 +190,15 @@ namespace Pirson
             get
             {
                 return all_work_time;
+            }
+        }
+
+        // Геттер для последовательности
+        public List<int> Sequence
+        {
+            get
+            {
+                return numbers;     
             }
         }
     }
